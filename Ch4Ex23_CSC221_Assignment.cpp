@@ -30,12 +30,13 @@ bool makingEntries = 1;
 
 int main()
 {
+    cout << "Welcome to the Geometry Calculator!\n" << endl;
     while (makingEntries == 1) {
-
-        cout << "Welcome to the Geometry Calculator!\n" << endl;
         displayMenu();
+        cout << endl;
         selectMenu();
-        cout << "Please make another selection.\n" << endl;
+        if (makingEntries == 1)
+            cout << "Please make another selection.\n" << endl;
     }
     return 0;
 }
@@ -53,6 +54,7 @@ void selectMenu() {
     int userSelection;
 
     cin >> userSelection;
+    cout << endl;
     while ((userSelection < 0) || userSelection > 4) {
         cout << "You have made an invalid entry, please try again.\n";
         cin.clear();
@@ -63,14 +65,14 @@ void selectMenu() {
         circleArea();
         break;
     case 2:
-        circleArea();
+        rectangleArea();
         break;
     case 3:
-        circleArea();
+        triangleArea();
         break;
     case 4:
         cout << "Exiting the program.\n";
-        exit(0);
+        makingEntries = 0;
     }
 }
     
@@ -81,8 +83,8 @@ void circleArea() {
     cout << fixed;
     cout << "Please enter the radius for the circle:\n";
     cin >> circleRadius;
-    checkNegative(circleRadius);
-    cout << "The area of the cirle is: " << PIE * (pow(circleRadius, 2));
+    circleRadius = checkNegative(circleRadius);
+    cout << "The area of the cirle is: " << PIE * (pow(circleRadius, 2)) << endl << endl;
 }
 
 void rectangleArea() {
@@ -92,11 +94,11 @@ void rectangleArea() {
     cout << fixed;
     cout << "Please enter the length of the rectangle:\n";
     cin >> length;
-    checkNegative(length);
+    length = checkNegative(length);
     cout << "Please enter the width of the rectangle:\n";
     cin >> width;
-    checkNegative(width);
-    cout << "The area of the rectangle is: " << length * width << endl;
+    width = checkNegative(width);
+    cout << "The area of the rectangle is: " << length * width << endl << endl;
 }
 
 void triangleArea() {
@@ -106,11 +108,11 @@ void triangleArea() {
     cout << fixed;
     cout << "Please enter the base of the right triangle:\n";
     cin >> base;
-    checkNegative(base);
+    base = checkNegative(base);
     cout << "Please enter the height of the right triagle:\n";
     cin >> height;
-    checkNegative(height);
-    cout << "The area of the right triangle is: " << base * height * .5 << endl;
+    height = checkNegative(height);
+    cout << "The area of the right triangle is: " << base * height * .5 << endl << endl;
 }
 
 double checkNegative(double inputNumber) {
@@ -118,7 +120,6 @@ double checkNegative(double inputNumber) {
         cout << "You have entered a negative number, please enter a positive number instead.\n";
         cin.clear();
         cin >> inputNumber;
-        return inputNumber;
     }
     return inputNumber;
 }
