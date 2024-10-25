@@ -52,12 +52,11 @@ void displayMenu() {
     
 void selectMenu() {
     int userSelection;
-
     cin >> userSelection;
+    cin.ignore(INT_MAX, '\n');
     cout << endl;
     while ((userSelection < 0) || userSelection > 4) {
         cout << "You have made an invalid entry, please try again.\n";
-        cin.clear();
         cin >> userSelection;
     }
     switch (userSelection) {
